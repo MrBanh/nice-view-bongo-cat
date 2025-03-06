@@ -3,7 +3,7 @@
 This is a copy of the nice!view shield from the official ZMK firmware as a ZMK module that changes the shields to include a bongo cat animation on the main board, and allows for new artwork on the peripheral board.
 As provided, it should function exactly like the current nice!view shield present in the ZMK firmware.
 
-Bongo Cat starts off slowly when you are typing slowly, animating on each keypress and key release. But when you really get going, Bongo Cat goes into FURIOUS mode, just banging away on the keys, and then when you slow down/stop, Bongo Cat rests. 
+Bongo Cat starts off slowly when you are typing slowly, animating on each keypress and key release. But when you really get going, Bongo Cat goes into FURIOUS mode, just banging away on the keys, and then when you slow down/stop, Bongo Cat rests.
 
 This module is meant to be added to an existing forked customized keymap repo like [this one for the Urchin board](https://github.com/duckyb/zmk-urchin) or [this one for the Chocofi](https://github.com/beekeeb/zmk-config-corne-chocofi-with-niceview) with build actions set up to build your firmware with github actions and is of course meant for boards with the nice!view. Please check for such forkable repos for your board if you do not currently have one.
 
@@ -23,16 +23,17 @@ manifest:
     # zmk official
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: dsifry #new entry
-      url-base: https://github.com/dsifry #new entry
+    - name: MrBanh # new entry
+      url-base: https://github.com/MrBanh # new entry
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: nice-view-mod #new entry
-      remote: dsifry #new entry
-      revision: main #new entry
+    # Add this below
+    - name: nice-view-bongo-cat # repo name
+      remote: MrBanh
+      revision: main # branch
   self:
     path: config
 ```
@@ -43,7 +44,18 @@ Now simply swap out the default nice_view shield on the board for the custom one
 ---
 include:
   - board: nice_nano_v2
-    shield: urchin_left nice_view_adapter  nice_view_custom #custom shield
+    shield: nice_view_bongo_cat
   - board: nice_nano_v2
-    shield: urchin_right nice_view_adapter nice_view_custom #custom shield
+    shield: nice_view_bongo_cat
+
+  # If you're using a non-native shield, include nice_view_adapter
+# include:
+#   - board: nice_nano_v2
+#     shield: corne_left nice_view_adapter nice_view_bongo_cat
+#   - board: nice_nano_v2
+#     shield: corne_right nice_view_adapter nice_view_bongo_cat
 ```
+
+## Special Credits
+
+Thanks @dsifry for creating the module. Main difference with my fork is I just want to display the bluetooth profile selected.
