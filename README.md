@@ -58,4 +58,4 @@ include:
 
 ## Special Credits
 
-Thanks @dsifry for creating the module. Main difference with my fork is I just want to display the bluetooth profile selected.
+Thanks [@dsifry](https://github.com/dsifry/nice-view-mod) for creating the module. Main difference with my fork is I just want to display the bluetooth profile selected.
